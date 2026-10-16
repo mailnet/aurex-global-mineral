@@ -20,7 +20,7 @@
 
 @theme inline {
   --font-sans: "Manrope", sans-serif;
-  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Manrope", sans-serif;
   --color-ivory: var(--ivory);
   --color-surface: var(--surface);
   --color-ink: var(--ink);
