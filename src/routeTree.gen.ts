@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CommoditiesRouteImport } from './routes/commodities'
 import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as InquiryRouteImport } from './routes/inquiry'
+import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as LogisticsRouteImport } from './routes/logistics'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const InquiryRoute = InquiryRouteImport.update({
   path: '/inquiry',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LogisticsRoute = LogisticsRouteImport.update({
   id: '/logistics',
   path: '/logistics',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/commodities': typeof CommoditiesRoute
   '/compliance': typeof ComplianceRoute
   '/inquiry': typeof InquiryRoute
+  '/insights': typeof InsightsRoute
   '/logistics': typeof LogisticsRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/commodities': typeof CommoditiesRoute
   '/compliance': typeof ComplianceRoute
   '/inquiry': typeof InquiryRoute
+  '/insights': typeof InsightsRoute
   '/logistics': typeof LogisticsRoute
 }
 export interface FileRoutesById {
@@ -70,15 +78,28 @@ export interface FileRoutesById {
   '/commodities': typeof CommoditiesRoute
   '/compliance': typeof ComplianceRoute
   '/inquiry': typeof InquiryRoute
+  '/insights': typeof InsightsRoute
   '/logistics': typeof LogisticsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/commodities' | '/compliance' | '/inquiry' | '/logistics'
+    | '/'
+    | '/about'
+    | '/commodities'
+    | '/compliance'
+    | '/inquiry'
+    | '/insights'
+    | '/logistics'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/about' | '/commodities' | '/compliance' | '/inquiry' | '/logistics'
+    | '/'
+    | '/about'
+    | '/commodities'
+    | '/compliance'
+    | '/inquiry'
+    | '/insights'
+    | '/logistics'
   id:
     | '__root__'
     | '/'
@@ -86,6 +107,7 @@ export interface FileRouteTypes {
     | '/commodities'
     | '/compliance'
     | '/inquiry'
+    | '/insights'
     | '/logistics'
   fileRoutesById: FileRoutesById
 }
@@ -95,6 +117,7 @@ export interface RootRouteChildren {
   CommoditiesRoute: typeof CommoditiesRoute
   ComplianceRoute: typeof ComplianceRoute
   InquiryRoute: typeof InquiryRoute
+  InsightsRoute: typeof InsightsRoute
   LogisticsRoute: typeof LogisticsRoute
 }
 
@@ -135,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InquiryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/logistics': {
       id: '/logistics'
       path: '/logistics'
@@ -151,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommoditiesRoute: CommoditiesRoute,
   ComplianceRoute: ComplianceRoute,
   InquiryRoute: InquiryRoute,
+  InsightsRoute: InsightsRoute,
   LogisticsRoute: LogisticsRoute,
 }
 export const routeTree = rootRouteImport

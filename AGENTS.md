@@ -10,6 +10,8 @@
 <!-- LOVABLE:END -->
 
 - Keep shared AUREX navigation, footer and language state in the root shell; every requested public page owns its content and metadata so deep links remain independent.
-- Keep trade inquiry submission client-only and explicitly unsent in this demonstration until verified contacts and secure persistence are configured; never imply a delivered inquiry.
+- Keep trade inquiries browser-only with schema validation and explicit WhatsApp handoff; only WhatsApp sends the message, so never imply website submission or delivery.
+- Keep industry resource data and business contact actions centralized; authoritative external publications are linked, not misrepresented as live AUREX pricing.
+- Use progressive IntersectionObserver motion with visible no-JavaScript content and reduced-motion support; animation must never prevent access to content.
 - Use semantic global style tokens and shared presentation components for the corporate design so brand values can change consistently.
 - Prebundle the shared Button's Radix Slot dependency in Vite so initial preview navigation cannot trigger late optimization and mixed React module identities.
