@@ -2,8 +2,6 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { Link } from '@tanstack/react-router';
 import { ArrowUpRight, ArrowRight, Globe2, Menu, X, ShieldCheck, Gem, LockKeyhole, MapPin, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logo from '@/assets/aurex-logo-dark.png.asset.json';
-import stacked from '@/assets/aurex-logo-stacked.png.asset.json';
 import ivory from '@/assets/aurex-horizontal-ivory.png.asset.json';
 import mark from '@/assets/aurex-mark.png.asset.json';
 import crest from '@/assets/aurex-crest.png.asset.json';
