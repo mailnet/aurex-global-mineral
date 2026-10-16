@@ -1,0 +1,22 @@
+import { useState } from 'react';
+import { Check, Download, ArrowUpRight, Calculator, FileCheck2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { resources, downloadText } from '@/lib/aurex-business';
+
+export function GoldCalculator(){
+ const [weight,setWeight]=useState('1');const [purity,setPurity]=useState('99.99');const [unit,setUnit]=useState('kg');
+ const w=Number(weight),p=Number(purity);const valid=weight!==''&&purity!==''&&Number.isFinite(w)&&Number.isFinite(p)&&w>0&&p>0&&p<=100;
+ const grams=w*(unit==='kg'?1000:unit==='oz'?31.1034768:1),fine=grams*p/100;
+ const format=(value:number)=>new Intl.NumberFormat('en-US',{maximumFractionDigits:4}).format(value);
+ return <div className="trade-tool"><div className="tool-heading"><Calculator/><div><span className="eyebrow">WEIGHT & FINENESS</span><h3>Fine gold calculator</h3></div></div><div className="calculator-inputs"><label>Gross weight<input type="number" min="0.0001" step="any" value={weight} onChange={e=>setWeight(e.target.value)}/></label><label>Unit<select value={unit} onChange={e=>setUnit(e.target.value)}><option value="kg">Kilograms</option><option value="g">Grams</option><option value="oz">Troy ounces</option></select></label><label>Gold purity (%)<input type="number" min="0.0001" max="100" step="any" value={purity} onChange={e=>setPurity(e.target.value)}/></label></div><div className="calculator-output" aria-live="polite"><div><span>Fine gold content</span><strong>{valid?format(fine):'—'} <small>g</small></strong></div><div><span>Troy ounce equivalent</span><strong>{valid?format(fine/31.1034768):'—'} <small>oz t</small></strong></div></div>{!valid&&<p className="form-error" role="alert">Enter a positive weight and purity between 0 and 100%.</p>}<p className="table-caption">Calculated from gross weight × purity. 1 troy oz = 31.1034768 g. Not an assay, valuation or trade quotation.</p></div>;
+}
+const checkItems=['Company registration and authorized signatory','Beneficial ownership and counterparty screening','Commodity origin and export eligibility','Independent assay or grading requirements','Delivery route, custody and insurance terms','Inspection, acceptance and settlement conditions'];
+export function ReadinessChecklist(){
+ const [checked,setChecked]=useState<string[]>([]);
+ return <div className="trade-tool"><div className="tool-heading"><FileCheck2/><div><span className="eyebrow">BEFORE THE FIRST TRANSACTION</span><h3>Documentation checklist</h3></div><span className="check-count" aria-live="polite">{checked.length} / {checkItems.length}</span></div><div className="readiness-list">{checkItems.map(item=><label key={item}><input type="checkbox" checked={checked.includes(item)} onChange={()=>setChecked(old=>old.includes(item)?old.filter(x=>x!==item):[...old,item])}/><span>{item}</span>{checked.includes(item)&&<Check size={16}/>}</label>)}</div><Button variant="outline" onClick={()=>downloadText('AUREX-documentation-checklist.txt',`AUREX GLOBAL MINERALS\nTransaction documentation checklist\n\n${checkItems.map(item=>`${checked.includes(item)?'[x]':'[ ]'} ${item}`).join('\n')}\n\nThis checklist does not constitute compliance approval. Requirements depend on the commodity, jurisdiction and transaction.`)}><Download/>Download checklist</Button><p className="table-caption">A preparation aid, not compliance approval. Do not upload sensitive identity documents over an unverified channel.</p></div>;
+}
+export function ResourceGrid({limit}:{limit?:number}){
+ const [filter,setFilter]=useState('All');const categories=['All','Market research','Responsible sourcing','Diamond verification','Custody & logistics'];
+ const items=resources.filter(r=>filter==='All'||r.category===filter).slice(0,limit??resources.length);
+ return <>{!limit&&<div className="resource-filters" aria-label="Resource categories">{categories.map(category=><Button key={category} variant="ghost" aria-pressed={category===filter} onClick={()=>setFilter(category)}>{category}</Button>)}</div>}<div className="resource-grid">{items.map((item,i)=><article className="resource-card" key={item.title}><div className="resource-top"><span className="eyebrow">{item.tag.toUpperCase()}</span><span>0{i+1}</span></div><h3>{item.title}</h3><p>{item.body}</p><a href={item.url} target="_blank" rel="noopener noreferrer">{item.source}<ArrowUpRight size={18}/></a></article>)}</div><p className="table-caption">Independent industry resources. External publications belong to their respective organizations; no affiliation with AUREX is implied.</p></>;
+}
