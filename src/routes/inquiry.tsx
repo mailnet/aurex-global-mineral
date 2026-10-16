@@ -1,0 +1,6 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { RouteHero, Section, OfficeGrid, FAQ } from '@/components/aurex/site';
+import { InquiryForm } from '@/components/aurex/inquiry-form';
+import { pageHead } from '@/lib/aurex-meta';
+export const Route=createFileRoute('/inquiry')({component:Inquiry,head:()=>pageHead('Institutional Trade Desk','Prepare a confidential gold or diamond sourcing inquiry with commodity, volume and destination requirements for the AUREX trade desk.','/inquiry')});
+function Inquiry(){return <><RouteHero kicker="INSTITUTIONAL TRADE DESK" title="A considered conversation starts here." description="Gold. Diamonds. International custody. Tell us what your next transaction requires."/><Section kicker="01 / YOUR TRADE BRIEF" title="Define your requirements."><InquiryForm/></Section><Section light kicker="02 / OFFICE LOCATIONS" title="A connected international perspective."><OfficeGrid/><p className="table-caption">Verified office addresses, business email and WhatsApp Business number are pending owner confirmation.</p></Section><Section kicker="03 / BEFORE YOU BEGIN" title="Your questions, considered."><FAQ/></Section></>;}

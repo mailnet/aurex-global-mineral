@@ -1,24 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Link } from '@tanstack/react-router';
+import { ArrowUpRight, ArrowDown, ShieldCheck, Gem, LockKeyhole, Globe2, MoveRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Section, TradeLink, AssuranceStrip, Pipeline, InfoGrid, Specifications, FAQ, OfficeGrid, BrandStory, T } from '@/components/aurex/site';
+import { InquiryForm } from '@/components/aurex/inquiry-form';
+import { pageHead } from '@/lib/aurex-meta';
+import hero from '@/assets/precious-resources.jpg';
 export const Route = createFileRoute("/")({
   component: Index,
+  head:()=>pageHead('Precious Resources. Professional Relationships.','Direct sourcing, verified precious commodities and coordinated custody between Kinshasa, Dubai and international markets.','/'),
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+ return <><section className="home-hero"><img className="hero-image" src={hero} width={1920} height={1024} alt="Gold bullion and fine diamonds on black stone" fetchPriority="high"/><div className="hero-shade"/><div className="site-width hero-content"><span className="eyebrow hero-eyebrow"><span className="gold-line"/><T en="AUREX GLOBAL MINERALS" fr="AUREX GLOBAL MINERALS"/></span><h1><T en="Precious resources." fr="Ressources précieuses."/><br/><em><T en="Exceptional assurance." fr="Une confiance exceptionnelle."/></em></h1><p className="hero-description"><T en="Direct Sourcing & Secure International Custody of Pure Gold and Fine Diamonds" fr="Approvisionnement direct et garde internationale sécurisée d’or pur et de diamants fins"/></p><p className="hero-subtext"><T en="Connecting the mineral wealth of Africa with the world's most discerning markets. With precision. With integrity." fr="Relier les richesses minérales de l’Afrique aux marchés les plus exigeants. Avec précision. Avec intégrité."/></p><div className="hero-actions"><TradeLink><T en="Initiate a trade inquiry" fr="Initier une demande"/></TradeLink><Button asChild variant="outline" className="trade-link"><Link to="/commodities"><T en="Explore our commodities" fr="Explorer nos matières"/><ArrowUpRight/></Link></Button></div><div className="hero-bottom"><span>PRECIOUS RESOURCES. PROFESSIONAL RELATIONSHIPS.</span><a href="#commodities" aria-label="Discover our commodities">SCROLL TO DISCOVER <ArrowDown size={13}/></a></div></div></section>
+ <section className="corridor-band"><div className="site-width corridor-inner"><span className="eyebrow">OUR OPERATING CORRIDOR</span><div><span className="status-dot"/><b>Kinshasa</b><small>SOURCING BASIN · DRC</small></div><MoveRight className="corridor-arrow"/><div><span className="status-dot"/><b>Dubai</b><small>COMMODITY HUB · UAE</small></div><span className="corridor-global"><Globe2 size={17}/>GLOBAL REACH</span></div></section>
+ <AssuranceStrip/>
+ <Section id="commodities" kicker="01 / OUR COMMODITIES" title="Intrinsic value. Exceptional quality." description="Two enduring stores of value. One uncompromising commitment to quality, provenance and professional execution."><div className="commodity-grid"><Link to="/commodities" className="commodity-card gold-card"><img src={hero} width={1920} height={1024} loading="lazy" alt="Refined gold bullion"/><div className="commodity-overlay"/><div className="commodity-content"><span className="eyebrow">PRECIOUS METALS</span><h3>Gold</h3><p>Doré bars & 999.9 refined bullion</p><span className="commodity-bottom">DIRECT SOURCING · INDEPENDENT ASSAY <ArrowUpRight/></span></div></Link><Link to="/commodities" hash="diamonds" className="commodity-card diamond-card"><img src={hero} width={1920} height={1024} loading="lazy" alt="Brilliant-cut and rough diamonds"/><div className="commodity-overlay"/><div className="commodity-content"><span className="eyebrow">PRECIOUS STONES</span><h3>Diamonds</h3><p>Natural rough & expertly polished stones</p><span className="commodity-bottom">VERIFIED ORIGIN · CONSIDERED SELECTION <ArrowUpRight/></span></div></Link></div></Section>
+ <Section kicker="02 / THE KINSHASA–DUBAI PIPELINE" title="From origin to opportunity." description="A connected, documented pathway from the sourcing basin to your chosen destination."><Pipeline/></Section>
+ <Section kicker="03 / ESCORT & CUSTODY" title="Every movement. Accounted for." description="Security is not an additional service. It is the architecture of the entire journey."><InfoGrid items={[{title:'Physical escort',body:'Authorized specialist personnel and controlled handovers, defined for the route and commodity.'},{title:'Insured transit',body:'Coverage scope, exclusions and insured value confirmed with the appointed provider before dispatch.'},{title:'Operational clearance',body:'Export authorization, customs documentation and destination readiness coordinated in advance.'}]}/><div className="section-link"><Link to="/logistics" className="text-link">Explore logistics & custody <ArrowUpRight size={16}/></Link></div></Section>
+ <Section light kicker="04 / COMPLIANCE BY DESIGN" title="Trust is built on a clear framework." description="Documented due diligence. Responsible sourcing. Counterparty accountability."><div className="compliance-grid">{[[ShieldCheck,'OECD','Due diligence alignment'],[Gem,'KIMBERLEY PROCESS','Rough diamond documentation'],[LockKeyhole,'KYC / AML','Counterparty verification']].map(([Icon,title,sub])=>{const I=Icon as typeof ShieldCheck;return <div key={String(title)}><I size={27}/><h3>{String(title)}</h3><p>{String(sub)}</p></div>;})}</div><Link className="text-link" to="/compliance">Review the compliance framework <ArrowUpRight size={16}/></Link></Section>
+ <Section kicker="05 / TRANSACTION ASSURANCE" title="Confidence, at every milestone."><InfoGrid items={[{title:'Verify independently',body:'Establish the identity, origin and quality of the material through agreed independent verification.'},{title:'Define settlement',body:'Set out acceptance conditions and any regulated escrow arrangements in the signed agreement.'},{title:'Handover securely',body:'Complete custody transfer at an agreed secure facility, with recipient sign-off and an auditable record.'}]}/></Section>
+ <Section kicker="06 / PRODUCT SPECIFICATIONS" title="Clarity before commitment." description="A precise starting point for an institutional conversation. Every lot is individually documented."><Specifications/></Section>
+ <Section kicker="07 / RESPONSIBLE ORIGIN" title="A traceable origin. A considered future." description="Responsible sourcing starts long before a shipment leaves the ground."><div className="editorial-split"><div className="origin-coordinate"><span>04°19′ S &nbsp; 15°19′ E</span><h3>Kinshasa.<br/><em>At the source.</em></h3><span>DEMOCRATIC REPUBLIC OF THE CONGO</span></div><div><p>Our proposed sourcing framework centers on documented supplier relationships, origin evidence and risk-based review in the Democratic Republic of the Congo.</p><p>Each transaction should be assessed for conflict, human-rights and financial-crime risks. Provenance is a matter of evidence—not assumption.</p><Link to="/compliance" className="text-link">Our approach to responsible sourcing <ArrowUpRight size={16}/></Link></div></div></Section>
+ <Section kicker="08 / SECURE FACILITIES" title="Protected through the final handover." description="Storage and custody arrangements are selected around the needs of each transaction."><InfoGrid items={[{title:'Bonded storage',body:'Controlled facilities and customs-aware handling, subject to appointed provider capabilities.'},{title:'Vault custody',body:'Documented access protocols, inventory identification and agreed custody responsibilities.'},{title:'Destination readiness',body:'Recipient verification and pre-arranged delivery acceptance before international dispatch.'}]}/></Section>
+ <Section light kicker="09 / INSTITUTIONAL RELATIONSHIPS" title="Different mandates. The same standard."><div className="buyer-grid">{['Private wealth','Jewelry houses','Refiners','International trade desks'].map((t,i)=><Link to="/inquiry" key={t}><span>0{i+1}</span><h3>{t}</h3><ArrowUpRight size={19}/></Link>)}</div></Section>
+ <Section kicker="10 / THE TRANSACTION PROCEDURE" title="A measured path to settlement."><InfoGrid items={[{title:'LOI & qualification',body:'Submit a Letter of Intent and complete the initial counterparty review.'},{title:'FCO & agreement',body:'Confirm the Full Corporate Offer, documentation, costs and contractual procedure.'},{title:'Inspection & settlement',body:'Complete independent inspection, agreed acceptance and documented final settlement.'}]}/></Section>
+ <Section kicker="11 / THE HOUSE OF AUREX" title="Professional relationships. Enduring value."><BrandStory/></Section>
+ <Section kicker="12 / FREQUENTLY ASKED QUESTIONS" title="Transparency starts with answers." description="The details that matter before a professional conversation begins."><FAQ/></Section>
+ <Section kicker="13 / INSTITUTIONAL TRADE DESK" title="Begin a considered conversation."><InquiryForm/></Section>
+ <Section kicker="14 / OUR GLOBAL PRESENCE" title="Two centers. One connected perspective."><OfficeGrid/><p className="table-caption">Office locations are city-level previews. Verified street addresses and contact details will be provided before launch. No DMCC or Airport Freezone membership is implied.</p></Section>
+ </>;
 }
