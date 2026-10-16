@@ -2,9 +2,9 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { Link } from '@tanstack/react-router';
 import { ArrowUpRight, ArrowRight, Globe2, Menu, X, ShieldCheck, Gem, LockKeyhole, MapPin, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ivory from '@/assets/aurex-horizontal-ivory.png.asset.json';
-import mark from '@/assets/aurex-mark.png.asset.json';
-import crest from '@/assets/aurex-crest.png.asset.json';
+import ivory from '@/assets/aurex-horizontal-ivory.png';
+import mark from '@/assets/aurex-mark.png';
+import crest from '@/assets/aurex-crest.png';
 export function BrandMark({compact=false}:{compact?:boolean}){return <span className={`brand-mark ${compact?'compact':''}`}><img src={mark.url} width={196} height={172} alt=""/><span className="brand-rule"/><span className="brand-words"><b>AUREX</b><small>GLOBAL MINERALS</small></span></span>;}
 import { business } from '@/lib/aurex-business';
 import hero from '@/assets/precious-resources.jpg';
