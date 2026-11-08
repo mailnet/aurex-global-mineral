@@ -32,21 +32,15 @@ Provide navigable routes for all 6 pages:
 - /about (The House & Heritage)
 - /inquiry (Trade Desk & WhatsApp Form)
 
-This project was built with [Lovable](https://lovable.dev).
+This project was built with A PROGRAMME LANGUAGE.
 
-**Live app**: https://aurex-global-mineral.lovable.app
+**Live app**: (https://aurex-global-mineral-w19l.onrender.com/)
 
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ef0646d6-a4f2-4ed1-b350-0bf181514608).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Ship faster**: describe what you want to build and VSCODE handles the code.
+- **Stay in sync**: every change made in VSCODE is committed straight to this repository.
 - **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
 git clone <this-repository-url>
